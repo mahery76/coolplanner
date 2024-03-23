@@ -1,2 +1,2 @@
 # coolplanner
-A light weight cool Timetable planner
+A lightweight cool Timetable planner
