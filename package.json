@@ -1,5 +1,5 @@
 {
-  "name": "coolerplanner",
+  "name": "coolplanner",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,7 +14,8 @@
     "pg": "^8.11.3",
     "prisma": "^5.11.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-icons": "^5.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",
