@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 export async function GET(request: any){
   const prisma = new PrismaClient();
   const createRole = async () => {
-    const newRole = await prisma.user_role.create({
+    const newRole = await prisma.user_roles.create({
       data: {
         user_role_name: "Admin",
       },
@@ -19,3 +19,4 @@ export async function GET(request: any){
       await prisma.$disconnect();
     });
 }
+
