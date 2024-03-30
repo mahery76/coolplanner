@@ -22,34 +22,45 @@ model user_roles {
 model users {
   user_id      String         @id @default(uuid())
   user_role_id String
-  role         user_roles     @relation(fields: [user_role_id], references: [user_role_id])
+  role         user_roles     @relation(fields: [user_role_id], references: [user_role_id], onDelete: Cascade, onUpdate: Cascade)
   core_classes core_classes[]
-  courses      courses[]
   teachers     teachers[]
-  rooms        rooms[]
+  majors       majors[]
+  classrooms   classrooms[]
   classes      classes[]
 }
 
 model core_classes {
-  core_classe_id String        @id @default(uuid())
-  user_id        String
-  user           users         @relation(fields: [user_id], references: [user_id])
-  assignments    assignments[]
+  core_classe_id   String        @id @default(uuid())
+  core_classe_name String
+  user_id          String
+  user             users         @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  assignments      assignments[]
+}
+
+model majors {
+  major_id   String    @id @default(uuid())
+  major_name String
+  user_id    String
+  user       users     @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  courses    courses[]
 }
 
 model courses {
   course_id   String        @id @default(uuid())
   course_name String
-  user_id     String
-  user        users         @relation(fields: [user_id], references: [user_id])
+  major_id    String
+  major       majors        @relation(fields: [major_id], references: [major_id], onDelete: Cascade)
   assignments assignments[]
 }
 
 model teachers {
   teacher_id           String                   @id @default(uuid())
   teacher_name         String
+  teacher_title        String
+  teacher_profil_pic   String
   user_id              String
-  user                 users                    @relation(fields: [user_id], references: [user_id])
+  user                 users                    @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
   teacher_availability teacher_availabilities[]
   assignments          assignments[]
 }
@@ -60,20 +71,21 @@ model timeslots {
   teacher_availability teacher_availabilities[]
 }
 
-model rooms {
-  room_id     String        @id @default(uuid())
-  room_name   String
-  user_id     String
-  user        users         @relation(fields: [user_id], references: [user_id])
-  assignments assignments[]
-  occupations occupations[]
+model classrooms {
+  classroom_id       String        @id @default(uuid())
+  classroom_name     String
+  classroom_capacity Int
+  user_id            String
+  user               users         @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  assignments        assignments[]
+  occupations        occupations[]
 }
 
 model classes {
   class_id    String        @id @default(uuid())
   class_name  String
   user_id     String
-  user        users         @relation(fields: [user_id], references: [user_id])
+  user        users         @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
   assignments assignments[]
 }
 
@@ -81,9 +93,9 @@ model teacher_availabilities {
   teacher_availability_id String        @id @default(uuid())
   availability_date       DateTime
   teacher_id              String
-  teacher                 teachers      @relation(fields: [teacher_id], references: [teacher_id])
+  teacher                 teachers      @relation(fields: [teacher_id], references: [teacher_id], onDelete: Cascade)
   slot_id                 String
-  slot                    timeslots     @relation(fields: [slot_id], references: [slot_id])
+  slot                    timeslots     @relation(fields: [slot_id], references: [slot_id], onUpdate: Cascade)
   occupations             occupations[]
 }
 
@@ -92,25 +104,26 @@ model assignments {
   assignment_hours           Int
   assignment_remaining_hours Int
   course_id                  String
-  course                     courses       @relation(fields: [course_id], references: [course_id])
+  course                     courses       @relation(fields: [course_id], references: [course_id], onDelete: Cascade, onUpdate: Cascade)
   teacher_id                 String
-  teachers                   teachers      @relation(fields: [teacher_id], references: [teacher_id])
+  teachers                   teachers      @relation(fields: [teacher_id], references: [teacher_id], onDelete: Cascade, onUpdate: Cascade)
   class_id                   String
-  classes                    classes       @relation(fields: [class_id], references: [class_id])
-  room_id                    String
-  rooms                      rooms         @relation(fields: [room_id], references: [room_id])
+  classes                    classes       @relation(fields: [class_id], references: [class_id], onDelete: Cascade, onUpdate: Cascade)
+  classroom_id               String
+  classrooms                 classrooms    @relation(fields: [classroom_id], references: [classroom_id], onDelete: Cascade, onUpdate: Cascade)
   core_classe_id             String
-  core_classe                core_classes  @relation(fields: [core_classe_id], references: [core_classe_id])
+  core_classe                core_classes  @relation(fields: [core_classe_id], references: [core_classe_id], onDelete: Cascade, onUpdate: Cascade)
   occupations                occupations[]
 }
 
 model occupations {
   occupations_id          String                 @id @default(uuid())
   remaining_hours         Int
+  is_done                 Boolean
   teacher_availability_id String
-  teacher_availability    teacher_availabilities @relation(fields: [teacher_availability_id], references: [teacher_availability_id])
+  teacher_availability    teacher_availabilities @relation(fields: [teacher_availability_id], references: [teacher_availability_id], onDelete: Cascade)
   assignment_id           String
-  assignment              assignments            @relation(fields: [assignment_id], references: [assignment_id])
-  room_id                 String
-  rooma                   rooms                  @relation(fields: [room_id], references: [room_id])
+  assignment              assignments            @relation(fields: [assignment_id], references: [assignment_id], onDelete: Cascade)
+  classroom_id            String
+  classrooms              classrooms             @relation(fields: [classroom_id], references: [classroom_id], onDelete: Cascade)
 }

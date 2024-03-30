@@ -1,4 +1,4 @@
 ## Admin interface
-- [ ] wireframe in admin interface for crud operations
+- [x] basic interface with layout and navigation
 - [ ]  
 - [ ] 
