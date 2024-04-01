@@ -1,9 +1,5 @@
-import React from 'react'
-
-function timetable_elements() {
-  return (
-    <div>timetable_elements</div>
-  )
+import { redirect } from 'next/navigation'
+export default async function Profile() {
+    redirect('/timetable_elements/majors')
+  // ...
 }
-
-export default timetable_elements
