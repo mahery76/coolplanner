@@ -5,6 +5,12 @@ function Major() {
   const handleSubmit = async ( event:any ) => {
     event.preventDefault()
     console.log('here is the submit')
+    const formData = new FormData(event.target)
+    try {
+      const response = await fetch('')
+    } catch (err) {
+      console.error(err)
+    }
   }
   return (
     <div>
@@ -16,5 +22,4 @@ function Major() {
     </div>
   )
 }
-
-export default Major
+export default Major;
