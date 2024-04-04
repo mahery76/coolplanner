@@ -1,0 +1,157 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model user_roles {
+  user_role_id   String  @id @default(uuid())
+  user_role_name String
+  users          users[]
+}
+
+model users {
+  user_id                String                   @id @default(uuid())
+  username               String 
+  user_role_id           String
+  role                   user_roles               @relation(fields: [user_role_id], references: [user_role_id], onDelete: Cascade, onUpdate: Cascade)
+  core_classes           core_classes[]
+  majors                 majors[]
+  courses                courses[]
+  teachers               teachers[]
+  timeslots              timeslots[]
+  classrooms             classrooms[]
+  classes                classes[]
+  teacher_availabilities teacher_availabilities[]
+  assignments            assignments[]
+  occupations            occupations[]
+}
+
+
+model core_classes {
+  core_classe_id   String        @id @default(uuid())
+  core_classe_name String
+  assignments      assignments[]
+
+  user_id          String
+  user             users         @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
+
+model majors {
+  major_id   String    @id @default(uuid())
+  major_name String
+  courses    courses[]
+
+  user_id    String
+  user       users     @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
+
+model courses {
+  course_id   String @id @default(uuid())
+  course_name String
+  major_id    String
+  major       majors @relation(fields: [major_id], references: [major_id], onDelete: Cascade)
+  assignments assignments[]
+  
+  user_id     String
+  user        users  @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+
+}
+
+model teachers {
+  teacher_id           String                   @id @default(uuid())
+  teacher_name         String
+  teacher_title        String
+  teacher_profil_pic   String
+  teacher_availability teacher_availabilities[]
+  assignments          assignments[]
+
+  user_id              String
+  user                 users                    @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
+
+model timeslots {
+  slot_id              String                   @id @default(uuid())
+  slo_value            String
+  teacher_availability teacher_availabilities[]
+  
+  user_id              String
+  user                 users                    @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
+
+model classrooms {
+  classroom_id       String        @id @default(uuid())
+  classroom_name     String
+  classroom_capacity Int
+  assignments        assignments[]
+  occupations        occupations[]
+
+  user_id            String
+  user               users         @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
+
+model classes {
+  class_id    String        @id @default(uuid())
+  class_name  String
+  assignments assignments[]
+
+  user_id     String
+  user        users         @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
+
+model teacher_availabilities {
+  teacher_availability_id String        @id @default(uuid())
+  availability_date       DateTime
+  teacher_id              String
+  teacher                 teachers      @relation(fields: [teacher_id], references: [teacher_id], onDelete: Cascade)
+  slot_id                 String
+  slot                    timeslots     @relation(fields: [slot_id], references: [slot_id], onUpdate: Cascade)
+  occupations             occupations[]
+
+  user_id String
+  user    users  @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
+
+model assignments {
+  assignment_id              String        @id @default(uuid())
+  assignment_hours           Int
+  assignment_remaining_hours Int
+  course_id                  String
+  course                     courses       @relation(fields: [course_id], references: [course_id], onDelete: Cascade, onUpdate: Cascade)
+  teacher_id                 String
+  teachers                   teachers      @relation(fields: [teacher_id], references: [teacher_id], onDelete: Cascade, onUpdate: Cascade)
+  class_id                   String
+  classes                    classes       @relation(fields: [class_id], references: [class_id], onDelete: Cascade, onUpdate: Cascade)
+  classroom_id               String
+  classrooms                 classrooms    @relation(fields: [classroom_id], references: [classroom_id], onDelete: Cascade, onUpdate: Cascade)
+  core_classe_id             String
+  core_classe                core_classes  @relation(fields: [core_classe_id], references: [core_classe_id], onDelete: Cascade, onUpdate: Cascade)
+  occupations                occupations[]
+
+  user_id String
+  user    users  @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
+
+model occupations {
+  occupations_id          String                 @id @default(uuid())
+  remaining_hours         Int
+  is_done                 Boolean
+  teacher_availability_id String
+  teacher_availability    teacher_availabilities @relation(fields: [teacher_availability_id], references: [teacher_availability_id], onDelete: Cascade)
+  assignment_id           String
+  assignment              assignments            @relation(fields: [assignment_id], references: [assignment_id], onDelete: Cascade)
+  classroom_id            String
+  classrooms              classrooms             @relation(fields: [classroom_id], references: [classroom_id], onDelete: Cascade)
+
+  user_id String
+  user    users  @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
