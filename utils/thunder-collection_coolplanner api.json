@@ -1,0 +1,29 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "coolplanner api",
+    "dateExported": "2024-04-04T11:26:50.616Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "2dd84f46-dc84-441a-bc83-fca35a45f928",
+            "name": "user_roles",
+            "containerId": "",
+            "created": "2024-04-04T10:20:07.137Z",
+            "sortNum": 10000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "3ed143fe-8959-4ecb-b25e-4cc7e995c906",
+            "colId": "563e6766-d23d-4477-a182-1440b856cb05",
+            "containerId": "2dd84f46-dc84-441a-bc83-fca35a45f928",
+            "name": "post user_role",
+            "url": "",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-04-04T10:20:22.590Z",
+            "modified": "2024-04-04T10:20:22.590Z",
+            "headers": []
+        }
+    ]
+}

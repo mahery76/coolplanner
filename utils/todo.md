@@ -1,4 +1,4 @@
 ## Admin interface
-- [x] basic interface with layout and navigation
-- [ ] input field in  
-- [ ] 
+- [x] insert in roles table
+- [x] insert in users table
+- [x] get one users

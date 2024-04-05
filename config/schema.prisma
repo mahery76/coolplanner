@@ -20,51 +20,30 @@ model user_roles {
 }
 
 model users {
-  user_id                String                   @id @default(uuid())
-  username               String 
-  user_role_id           String
-  role                   user_roles               @relation(fields: [user_role_id], references: [user_role_id], onDelete: Cascade, onUpdate: Cascade)
-  core_classes           core_classes[]
-  majors                 majors[]
-  courses                courses[]
-  teachers               teachers[]
-  timeslots              timeslots[]
-  classrooms             classrooms[]
-  classes                classes[]
-  teacher_availabilities teacher_availabilities[]
-  assignments            assignments[]
-  occupations            occupations[]
+  user_id      String     @id @default(uuid())
+  username     String
+  user_role_id String
+  role         user_roles @relation(fields: [user_role_id], references: [user_role_id], onDelete: Cascade, onUpdate: Cascade)
 }
 
-
 model core_classes {
-  core_classe_id   String        @id @default(uuid())
+  core_classe_id   String       @id @default(uuid())
   core_classe_name String
-  assignments      assignments[]
-
-  user_id          String
-  user             users         @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  activities       activities[]
 }
 
 model majors {
   major_id   String    @id @default(uuid())
   major_name String
   courses    courses[]
-
-  user_id    String
-  user       users     @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
 }
 
 model courses {
-  course_id   String @id @default(uuid())
+  course_id   String       @id @default(uuid())
   course_name String
   major_id    String
-  major       majors @relation(fields: [major_id], references: [major_id], onDelete: Cascade)
-  assignments assignments[]
-  
-  user_id     String
-  user        users  @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
-
+  major       majors       @relation(fields: [major_id], references: [major_id], onDelete: Cascade)
+  activities  activities[]
 }
 
 model teachers {
@@ -73,39 +52,35 @@ model teachers {
   teacher_title        String
   teacher_profil_pic   String
   teacher_availability teacher_availabilities[]
-  assignments          assignments[]
-
-  user_id              String
-  user                 users                    @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  activities           activities[]
 }
 
 model timeslots {
   slot_id              String                   @id @default(uuid())
   slo_value            String
   teacher_availability teacher_availabilities[]
-  
-  user_id              String
-  user                 users                    @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
 }
 
 model classrooms {
   classroom_id       String        @id @default(uuid())
   classroom_name     String
   classroom_capacity Int
-  assignments        assignments[]
+  activities         activities[]
   occupations        occupations[]
-
-  user_id            String
-  user               users         @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
 }
 
-model classes {
-  class_id    String        @id @default(uuid())
-  class_name  String
-  assignments assignments[]
+model groups {
+  group_id   String       @id @default(uuid())
+  group_name String
+  students students[]
+  activities activities[]
 
-  user_id     String
-  user        users         @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
+model students {
+  student_id String @id
+  student_name String
+  group_id String
+  groups groups @relation(fields: [group_id], references: [group_id])
 }
 
 model teacher_availabilities {
@@ -116,29 +91,23 @@ model teacher_availabilities {
   slot_id                 String
   slot                    timeslots     @relation(fields: [slot_id], references: [slot_id], onUpdate: Cascade)
   occupations             occupations[]
-
-  user_id String
-  user    users  @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
 }
 
-model assignments {
-  assignment_id              String        @id @default(uuid())
-  assignment_hours           Int
-  assignment_remaining_hours Int
-  course_id                  String
-  course                     courses       @relation(fields: [course_id], references: [course_id], onDelete: Cascade, onUpdate: Cascade)
-  teacher_id                 String
-  teachers                   teachers      @relation(fields: [teacher_id], references: [teacher_id], onDelete: Cascade, onUpdate: Cascade)
-  class_id                   String
-  classes                    classes       @relation(fields: [class_id], references: [class_id], onDelete: Cascade, onUpdate: Cascade)
-  classroom_id               String
-  classrooms                 classrooms    @relation(fields: [classroom_id], references: [classroom_id], onDelete: Cascade, onUpdate: Cascade)
-  core_classe_id             String
-  core_classe                core_classes  @relation(fields: [core_classe_id], references: [core_classe_id], onDelete: Cascade, onUpdate: Cascade)
-  occupations                occupations[]
-
-  user_id String
-  user    users  @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+model activities {
+  activity_id              String        @id @default(uuid())
+  activity_total_hours     Int
+  activity_remaining_hours Int
+  course_id                String
+  course                   courses       @relation(fields: [course_id], references: [course_id], onDelete: Cascade, onUpdate: Cascade)
+  teacher_id               String
+  teachers                 teachers      @relation(fields: [teacher_id], references: [teacher_id], onDelete: Cascade, onUpdate: Cascade)
+  group_id                 String
+  groups                   groups        @relation(fields: [group_id], references: [group_id], onDelete: Cascade, onUpdate: Cascade)
+  classroom_id             String
+  classrooms               classrooms    @relation(fields: [classroom_id], references: [classroom_id], onDelete: Cascade, onUpdate: Cascade)
+  core_classe_id           String
+  core_classe              core_classes  @relation(fields: [core_classe_id], references: [core_classe_id], onDelete: Cascade, onUpdate: Cascade)
+  occupations              occupations[]
 }
 
 model occupations {
@@ -147,11 +116,8 @@ model occupations {
   is_done                 Boolean
   teacher_availability_id String
   teacher_availability    teacher_availabilities @relation(fields: [teacher_availability_id], references: [teacher_availability_id], onDelete: Cascade)
-  assignment_id           String
-  assignment              assignments            @relation(fields: [assignment_id], references: [assignment_id], onDelete: Cascade)
+  activity_id             String
+  activities              activities             @relation(fields: [activity_id], references: [activity_id], onDelete: Cascade)
   classroom_id            String
   classrooms              classrooms             @relation(fields: [classroom_id], references: [classroom_id], onDelete: Cascade)
-
-  user_id String
-  user    users  @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
 }
