@@ -14,40 +14,40 @@ datasource db {
 }
 
 model user_roles {
-  user_role_id   String  @id @default(uuid())
+  user_role_id   Int     @id @default(autoincrement())
   user_role_name String
   users          users[]
 }
 
 model users {
-  user_id      String     @id @default(uuid())
+  user_id      Int        @id @default(autoincrement())
   username     String
-  user_role_id String
+  user_role_id Int
   role         user_roles @relation(fields: [user_role_id], references: [user_role_id], onDelete: Cascade, onUpdate: Cascade)
 }
 
-model core_classes {
-  core_classe_id   String       @id @default(uuid())
-  core_classe_name String
-  activities       activities[]
+model core_classes_ref {
+  core_classe_ref_id   Int          @id @default(autoincrement())
+  core_classe_ref_name String
+  activities           activities[]
 }
 
 model majors {
-  major_id   String    @id @default(uuid())
+  major_id   Int       @id @default(autoincrement())
   major_name String
   courses    courses[]
 }
 
 model courses {
-  course_id   String       @id @default(uuid())
+  course_id   Int          @id @default(autoincrement())
   course_name String
-  major_id    String
+  major_id    Int
   major       majors       @relation(fields: [major_id], references: [major_id], onDelete: Cascade)
   activities  activities[]
 }
 
 model teachers {
-  teacher_id           String                   @id @default(uuid())
+  teacher_id           Int                      @id @default(autoincrement())
   teacher_name         String
   teacher_title        String
   teacher_profil_pic   String
@@ -56,13 +56,13 @@ model teachers {
 }
 
 model timeslots {
-  slot_id              String                   @id @default(uuid())
-  slo_value            String
+  slot_id              Int                      @id @default(autoincrement())
+  slot_value           String
   teacher_availability teacher_availabilities[]
 }
 
 model classrooms {
-  classroom_id       String        @id @default(uuid())
+  classroom_id       Int           @id @default(autoincrement())
   classroom_name     String
   classroom_capacity Int
   activities         activities[]
@@ -70,54 +70,54 @@ model classrooms {
 }
 
 model groups {
-  group_id   String       @id @default(uuid())
+  group_id   Int          @id @default(autoincrement())
   group_name String
-  students students[]
+  students   students[]
   activities activities[]
-
 }
+
 model students {
-  student_id String @id
+  student_id   Int    @id @default(autoincrement())
   student_name String
-  group_id String
-  groups groups @relation(fields: [group_id], references: [group_id])
+  group_id     Int
+  groups       groups @relation(fields: [group_id], references: [group_id])
 }
 
 model teacher_availabilities {
-  teacher_availability_id String        @id @default(uuid())
+  teacher_availability_id Int           @id @default(autoincrement())
   availability_date       DateTime
-  teacher_id              String
+  teacher_id              Int
   teacher                 teachers      @relation(fields: [teacher_id], references: [teacher_id], onDelete: Cascade)
-  slot_id                 String
+  slot_id                 Int
   slot                    timeslots     @relation(fields: [slot_id], references: [slot_id], onUpdate: Cascade)
   occupations             occupations[]
 }
 
 model activities {
-  activity_id              String        @id @default(uuid())
+  activity_id              Int              @id @default(autoincrement())
   activity_total_hours     Int
   activity_remaining_hours Int
-  course_id                String
-  course                   courses       @relation(fields: [course_id], references: [course_id], onDelete: Cascade, onUpdate: Cascade)
-  teacher_id               String
-  teachers                 teachers      @relation(fields: [teacher_id], references: [teacher_id], onDelete: Cascade, onUpdate: Cascade)
-  group_id                 String
-  groups                   groups        @relation(fields: [group_id], references: [group_id], onDelete: Cascade, onUpdate: Cascade)
-  classroom_id             String
-  classrooms               classrooms    @relation(fields: [classroom_id], references: [classroom_id], onDelete: Cascade, onUpdate: Cascade)
-  core_classe_id           String
-  core_classe              core_classes  @relation(fields: [core_classe_id], references: [core_classe_id], onDelete: Cascade, onUpdate: Cascade)
+  course_id                Int
+  course                   courses          @relation(fields: [course_id], references: [course_id], onDelete: Cascade, onUpdate: Cascade)
+  teacher_id               Int
+  teachers                 teachers         @relation(fields: [teacher_id], references: [teacher_id], onDelete: Cascade, onUpdate: Cascade)
+  group_id                 Int
+  groups                   groups           @relation(fields: [group_id], references: [group_id], onDelete: Cascade, onUpdate: Cascade)
+  classroom_id             Int
+  classrooms               classrooms       @relation(fields: [classroom_id], references: [classroom_id], onDelete: Cascade, onUpdate: Cascade)
+  core_classe_ref_id       Int
+  core_classe              core_classes_ref @relation(fields: [core_classe_ref_id], references: [core_classe_ref_id], onDelete: Cascade, onUpdate: Cascade)
   occupations              occupations[]
 }
 
 model occupations {
-  occupations_id          String                 @id @default(uuid())
+  occupations_id          Int                    @id @default(autoincrement())
   remaining_hours         Int
   is_done                 Boolean
-  teacher_availability_id String
+  teacher_availability_id Int
   teacher_availability    teacher_availabilities @relation(fields: [teacher_availability_id], references: [teacher_availability_id], onDelete: Cascade)
-  activity_id             String
+  activity_id             Int
   activities              activities             @relation(fields: [activity_id], references: [activity_id], onDelete: Cascade)
-  classroom_id            String
+  classroom_id            Int
   classrooms              classrooms             @relation(fields: [classroom_id], references: [classroom_id], onDelete: Cascade)
 }

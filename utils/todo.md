@@ -1,4 +1,2 @@
 ## Admin interface
-- [x] insert in roles table
-- [x] insert in users table
-- [x] get one users
+- [] insert default data in one api route 
