@@ -20,29 +20,33 @@ export const majorsData = [
   { major_name: "Management" },
   { major_name: "Computer Science" },
   { major_name: "Civil Engineering" },
-  ,
 ];
 //courses
 export const coursesData = [
-  { course_name: "Accounting" },
-  { course_name: "Business Ethics" },
-  { course_name: "Organizational Behavior" },
-  { course_name: "Strategic Management" },
-  { course_name: "Operations Management" },
+  { course_name: "Accounting", major_id: 1 },
+  { course_name: "Business Ethics", major_id: 1 },
+  { course_name: "Organizational Behavior", major_id: 1 },
+  { course_name: "Strategic Management", major_id: 1 },
+  { course_name: "Operations Management", major_id: 1 },
+  { course_name: "French", major_id: 1 },
+  { course_name: "Spanish", major_id: 1 },
+  { course_name: "Chinese", major_id: 1 },
 
-  { course_name: "Algorithms" },
-  { course_name: "Data Structures" },
-  { course_name: "Computer Networks" },
-  { course_name: "Operating Systems" },
+  { course_name: "Algorithms", major_id: 2 },
+  { course_name: "Data Structures", major_id: 2 },
+  { course_name: "Computer Networks", major_id: 2 },
+  { course_name: "Operating Systems", major_id: 2 },
+  { course_name: "French", major_id: 2 },
+  { course_name: "Spanish", major_id: 2 },
+  { course_name: "Chinese", major_id: 2 },
 
-  { course_name: "Structural Analysis" },
-  { course_name: "Fluid Mechanics" },
-  { course_name: "Transportation Engineering" },
-  { course_name: "Environmental Engineering" },
-
-  { course_name: "French" },
-  { course_name: "Spanish" },
-  { course_name: "Chinese" },
+  { course_name: "Structural Analysis", major_id: 3 },
+  { course_name: "Fluid Mechanics", major_id: 3 },
+  { course_name: "Transportation Engineering", major_id: 3 },
+  { course_name: "Environmental Engineering", major_id: 3 },
+  { course_name: "French", major_id: 3 },
+  { course_name: "Spanish", major_id: 3 },
+  { course_name: "Chinese", major_id: 3 },
 ];
 
 //groups
@@ -134,31 +138,41 @@ export const classroomsData = [
 
 //core_classes_ref
 export const core_classes_refData = [
-  { core_classes_ref_name: "ccr 1" },
-  { core_classes_ref_name: "ccr 2" },
-  { core_classes_ref_name: "ccr 3" },
-  { core_classes_ref_name: "ccr 4" },
+  { core_classe_ref_name: "ccr 1" },
+  { core_classe_ref_name: "ccr 2" },
+  { core_classe_ref_name: "ccr 3" },
+  { core_classe_ref_name: "ccr 4" },
+];
+
+//students
+export const studentsData = [
+  { student_name: "Alex Johnson", group_id: 1 },
+  { student_name: "Brittany Smith", group_id: 2 },
+  { student_name: "Charles Brown", group_id: 3 },
+  { student_name: "Danielle Miller", group_id: 4 },
+  { student_name: "Ethan Williams", group_id: 5 },
+  { student_name: "Fiona Jones", group_id: 6 },
 ];
 
 //teacher_availabilities
 export const teacherAvailabilitiesData = [
   {
-    availability_date: new Date('2022-09-01T08:00:00'),
+    availability_date: new Date("2022-09-01T08:00:00"),
     teacher_id: 1,
     slot_id: 1,
   },
   {
-    availability_date: new Date('2022-09-01T10:00:00'),
+    availability_date: new Date("2022-09-01T10:00:00"),
     teacher_id: 1,
     slot_id: 2,
   },
   {
-    availability_date: new Date('2022-09-02T01:00:00'),
+    availability_date: new Date("2022-09-02T01:00:00"),
     teacher_id: 2,
     slot_id: 3,
   },
   {
-    availability_date: new Date('2022-09-02T03:00:00'),
+    availability_date: new Date("2022-09-02T03:00:00"),
     teacher_id: 2,
     slot_id: 4,
   },

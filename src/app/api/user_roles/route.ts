@@ -15,6 +15,7 @@ export async function POST(req: any) {
     console.error(err);
   }
   finally{
+    
     await prisma.$disconnect()    
   }
 }

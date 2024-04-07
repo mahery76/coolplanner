@@ -26,16 +26,19 @@ model users {
   role         user_roles @relation(fields: [user_role_id], references: [user_role_id], onDelete: Cascade, onUpdate: Cascade)
 }
 
-model core_classes_ref {
-  core_classe_ref_id   Int          @id @default(autoincrement())
-  core_classe_ref_name String
-  activities           activities[]
-}
+
 
 model majors {
   major_id   Int       @id @default(autoincrement())
   major_name String
   courses    courses[]
+}
+
+model groups {
+  group_id   Int          @id @default(autoincrement())
+  group_name String
+  students   students[]
+  activities activities[]
 }
 
 model courses {
@@ -69,11 +72,10 @@ model classrooms {
   occupations        occupations[]
 }
 
-model groups {
-  group_id   Int          @id @default(autoincrement())
-  group_name String
-  students   students[]
-  activities activities[]
+model core_classes_refs {
+  core_classe_ref_id   Int          @id @default(autoincrement())
+  core_classe_ref_name String
+  activities           activities[]
 }
 
 model students {
@@ -106,7 +108,7 @@ model activities {
   classroom_id             Int
   classrooms               classrooms       @relation(fields: [classroom_id], references: [classroom_id], onDelete: Cascade, onUpdate: Cascade)
   core_classe_ref_id       Int
-  core_classe              core_classes_ref @relation(fields: [core_classe_ref_id], references: [core_classe_ref_id], onDelete: Cascade, onUpdate: Cascade)
+  core_classe              core_classes_refs @relation(fields: [core_classe_ref_id], references: [core_classe_ref_id], onDelete: Cascade, onUpdate: Cascade)
   occupations              occupations[]
 }
 
