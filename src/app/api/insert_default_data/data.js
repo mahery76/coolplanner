@@ -28,25 +28,20 @@ export const coursesData = [
   { course_name: "Organizational Behavior", major_id: 1 },
   { course_name: "Strategic Management", major_id: 1 },
   { course_name: "Operations Management", major_id: 1 },
-  { course_name: "French", major_id: 1 },
-  { course_name: "Spanish", major_id: 1 },
-  { course_name: "Chinese", major_id: 1 },
 
   { course_name: "Algorithms", major_id: 2 },
   { course_name: "Data Structures", major_id: 2 },
   { course_name: "Computer Networks", major_id: 2 },
   { course_name: "Operating Systems", major_id: 2 },
-  { course_name: "French", major_id: 2 },
-  { course_name: "Spanish", major_id: 2 },
-  { course_name: "Chinese", major_id: 2 },
 
   { course_name: "Structural Analysis", major_id: 3 },
   { course_name: "Fluid Mechanics", major_id: 3 },
   { course_name: "Transportation Engineering", major_id: 3 },
   { course_name: "Environmental Engineering", major_id: 3 },
-  { course_name: "French", major_id: 3 },
-  { course_name: "Spanish", major_id: 3 },
-  { course_name: "Chinese", major_id: 3 },
+
+  { course_name: "French"},
+  { course_name: "Spanish"},
+  { course_name: "Chinese"},
 ];
 
 //groups
@@ -95,16 +90,16 @@ export const teachersData = [
 //timeslots
 export const timeslotsData = [
   {
-    slot_value: "08:00 AM - 10:00 AM",
+    timeslot_value: "08:00 AM - 10:00 AM",
   },
   {
-    slot_value: "10:00 AM - 12:00 PM",
+    timeslot_value: "10:00 AM - 12:00 PM",
   },
   {
-    slot_value: "01:00 PM - 03:00 PM",
+    timeslot_value: "01:00 PM - 03:00 PM",
   },
   {
-    slot_value: "03:00 PM - 05:00 PM",
+    timeslot_value: "03:00 PM - 05:00 PM",
   },
 ];
 
@@ -159,22 +154,22 @@ export const teacherAvailabilitiesData = [
   {
     availability_date: new Date("2022-09-01T08:00:00"),
     teacher_id: 1,
-    slot_id: 1,
+    timeslot_id: 1,
   },
   {
     availability_date: new Date("2022-09-01T10:00:00"),
     teacher_id: 1,
-    slot_id: 2,
+    timeslot_id: 2,
   },
   {
     availability_date: new Date("2022-09-02T01:00:00"),
     teacher_id: 2,
-    slot_id: 3,
+    timeslot_id: 3,
   },
   {
     availability_date: new Date("2022-09-02T03:00:00"),
     teacher_id: 2,
-    slot_id: 4,
+    timeslot_id: 4,
   },
 ];
 

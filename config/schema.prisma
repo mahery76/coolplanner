@@ -26,8 +26,6 @@ model users {
   role         user_roles @relation(fields: [user_role_id], references: [user_role_id], onDelete: Cascade, onUpdate: Cascade)
 }
 
-
-
 model majors {
   major_id   Int       @id @default(autoincrement())
   major_name String
@@ -44,8 +42,8 @@ model groups {
 model courses {
   course_id   Int          @id @default(autoincrement())
   course_name String
-  major_id    Int
-  major       majors       @relation(fields: [major_id], references: [major_id], onDelete: Cascade)
+  major_id    Int?        
+  majors      majors?       @relation(fields: [major_id], references: [major_id], onDelete: Cascade)
   activities  activities[]
 }
 
@@ -59,8 +57,8 @@ model teachers {
 }
 
 model timeslots {
-  slot_id              Int                      @id @default(autoincrement())
-  slot_value           String
+  timeslot_id              Int                      @id @default(autoincrement())
+  timeslot_value           String
   teacher_availability teacher_availabilities[]
 }
 
@@ -73,7 +71,7 @@ model classrooms {
 }
 
 model core_classes_refs {
-  core_classe_ref_id   Int          @id @default(autoincrement())
+  core_class_ref_id   Int          @id @default(autoincrement())
   core_classe_ref_name String
   activities           activities[]
 }
@@ -90,8 +88,8 @@ model teacher_availabilities {
   availability_date       DateTime
   teacher_id              Int
   teacher                 teachers      @relation(fields: [teacher_id], references: [teacher_id], onDelete: Cascade)
-  slot_id                 Int
-  slot                    timeslots     @relation(fields: [slot_id], references: [slot_id], onUpdate: Cascade)
+  timeslot_id                 Int
+  slot                    timeslots     @relation(fields: [timeslot_id], references: [timeslot_id], onUpdate: Cascade)
   occupations             occupations[]
 }
 
@@ -107,8 +105,8 @@ model activities {
   groups                   groups           @relation(fields: [group_id], references: [group_id], onDelete: Cascade, onUpdate: Cascade)
   classroom_id             Int
   classrooms               classrooms       @relation(fields: [classroom_id], references: [classroom_id], onDelete: Cascade, onUpdate: Cascade)
-  core_classe_ref_id       Int
-  core_classe              core_classes_refs @relation(fields: [core_classe_ref_id], references: [core_classe_ref_id], onDelete: Cascade, onUpdate: Cascade)
+  core_class_ref_id       Int
+  core_classe              core_classes_refs @relation(fields: [core_class_ref_id], references: [core_class_ref_id], onDelete: Cascade, onUpdate: Cascade)
   occupations              occupations[]
 }
 

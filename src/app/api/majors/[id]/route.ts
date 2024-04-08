@@ -9,7 +9,7 @@ export async function GET(req: Request, {params}: {params: {id: string}}) {
         return NextResponse.json(major.rows)
         
     } catch (error) {
-        console.log(error)
+        return NextResponse.json({"error": error})
     }
 }
 

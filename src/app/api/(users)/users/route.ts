@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import { pool } from "../../../../config/db";
+import { pool } from "../../../../../config/db";
 
 export async function POST(req: any) {
   const prisma = new PrismaClient();
@@ -12,7 +12,7 @@ export async function POST(req: any) {
     });
     return NextResponse.json({newUser});
   } catch (err) {
-    console.log(err);
+    return NextResponse.json({"error": err})
   }
   finally{
     await prisma.$disconnect()

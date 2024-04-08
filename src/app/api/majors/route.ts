@@ -9,7 +9,7 @@ export async function GET(req: Request) {
   
       return NextResponse.json({"majors": majors.rows})
     } catch (err) {
-      console.error(err)
+      return NextResponse.json({"error": err})
     }
     finally{
       await prisma.$disconnect()    

@@ -1,12 +1,11 @@
 import { NextResponse, NextRequest } from 'next/server'
-import {pool} from '../../../../../config/db'
+import {pool} from '../../../../config/db'
 
 export async function GET(req: Request) {
     try {
-      const groups = await pool.query(`SELECT * FROM groups;`)
-      return NextResponse.json({"groups": groups.rows})
+      const teachers = await pool.query(`SELECT * FROM teachers;`)
+      return NextResponse.json({"teachers": teachers.rows})
     } catch (err) {
       return NextResponse.json({"error": err})
     }
 }
-

@@ -1,8 +1,18 @@
 - psql -U postgres
 - mdp
+or 
+- sudo -i -u postgres
+- psql
+
 - CREATE DATABASE [NEW_DB];
 - \l (list all database)
 - \c [database_name] (switch into the new database)
 - \dt
 - select * from "[relation]";
+- \d [table name]
+
+Delete all rows and reset sequence of autoincrementing
+
+
+
 
