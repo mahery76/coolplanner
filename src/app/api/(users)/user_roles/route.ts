@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import {pool} from '../../../../../config/db'
 
-export async function POST(req: any) {
+export async function POST(req: Request) {
   const prisma = new PrismaClient();
   const body = await req.json();
   console.log(body);

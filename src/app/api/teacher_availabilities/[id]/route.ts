@@ -10,3 +10,18 @@ export async function GET(req: Request, {params}: {params: {id: string}}){
         return NextResponse.json({"error": err})
     }
 }
+
+export async function DELETE(
+    req: Request,
+    { params }: { params: { id: string } }
+  ) {
+    try {
+      const { id } = params;
+      const teacher_availability = await pool.query(
+        `DELETE FROM teacher_availabilities WHERE teacher_availability_id=${id}`
+      );
+      return NextResponse.json(teacher_availability.rows);
+    } catch (err) {
+      return NextResponse.json({ error: err });
+    }
+  }

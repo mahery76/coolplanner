@@ -41,30 +41,44 @@ const resetData = async () => {
 const insertData = async () => {
   const prisma = new PrismaClient();
   try {
-    await prisma.user_roles.createMany({ data: userRolesData, skipDuplicates: true })
-    await prisma.users.createMany({ data: usersData, skipDuplicates: true })
-    await prisma.majors.createMany({ data: majorsData, skipDuplicates: true })
-    await prisma.courses.createMany({ data: coursesData, skipDuplicates: true })
-    await prisma.groups.createMany({ data: groupsData, skipDuplicates: true })
-    await prisma.teachers.createMany({ data: teachersData, skipDuplicates: true })
-    await prisma.timeslots.createMany({ data: timeslotsData, skipDuplicates: true })
+    await prisma.user_roles.createMany({
+      data: userRolesData,
+      skipDuplicates: true,
+    });
+    await prisma.users.createMany({ data: usersData, skipDuplicates: true });
+    await prisma.majors.createMany({ data: majorsData, skipDuplicates: true });
+    await prisma.courses.createMany({
+      data: coursesData,
+      skipDuplicates: true,
+    });
+    await prisma.groups.createMany({ data: groupsData, skipDuplicates: true });
+    await prisma.teachers.createMany({
+      data: teachersData,
+      skipDuplicates: true,
+    });
+    await prisma.timeslots.createMany({
+      data: timeslotsData,
+      skipDuplicates: true,
+    });
     await prisma.classrooms.createMany({
       data: classroomsData,
       skipDuplicates: true,
-    })
+    });
     await prisma.core_classes_refs.createMany({
       data: core_classes_refData,
       skipDuplicates: true,
-    })
-    await prisma.students.createMany({ data: studentsData, skipDuplicates: true })
-    
+    });
+    await prisma.students.createMany({
+      data: studentsData,
+      skipDuplicates: true,
+    });
+
     await prisma.teacher_availabilities.createMany({
       data: teacherAvailabilitiesData,
       skipDuplicates: true,
-    })
-
+    });
   } catch (err) {
-    console.error(err);
+    return NextResponse.json({ error: err });
   } finally {
     await prisma.$disconnect();
   }
@@ -77,6 +91,6 @@ export async function POST(req: any) {
 
     return NextResponse.json({ message: "Default data inserted successfully" });
   } catch (err) {
-    return NextResponse.json({"error": err})
+    return NextResponse.json({ error: err });
   }
 }

@@ -4,12 +4,8 @@ import { PrismaClient } from "@prisma/client";
 
 export async function GET(req: Request) {
   try {
-    const teacher_availabilities = await pool.query(
-      `SELECT * FROM teacher_availabilities;`
-    );
-    return NextResponse.json({
-      teacher_availabilities: teacher_availabilities.rows,
-    });
+    const activities = await pool.query(`SELECT * FROM activities;`);
+    return NextResponse.json({ activities: activities.rows });
   } catch (err) {
     return NextResponse.json({ error: err });
   }
@@ -17,12 +13,13 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   const prisma = new PrismaClient();
+
   try {
     const body = await req.json();
-    const newTeacherAvailability = await prisma.teacher_availabilities.create({
+    const newActivity = await prisma.activities.create({
       data: body,
     });
-    return NextResponse.json({ teacher_availability: newTeacherAvailability });
+    return NextResponse.json({ activity: newActivity });
   } catch (err) {
     return NextResponse.json({ error: err });
   } finally {
