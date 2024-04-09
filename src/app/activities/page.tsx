@@ -1,9 +1,9 @@
 import React from 'react'
 
-function attributions() {
+function Activities() {
   return (
-    <div>attributions</div>
+    <div>Activities</div>
   )
 }
 
-export default attributions
+export default Activities

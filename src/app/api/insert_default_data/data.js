@@ -1,8 +1,8 @@
 //user_roles
 export const userRolesData = [
   { user_role_name: "admin" },
-  { user_role_name: "teacher" },
-  { user_role_name: "student" },
+  { user_role_name: "Enseignant" },
+  { user_role_name: "Etudiant" },
 ];
 
 //users
@@ -17,72 +17,72 @@ export const usersData = [
 
 //majors
 export const majorsData = [
-  { major_name: "Management" },
-  { major_name: "Computer Science" },
-  { major_name: "Civil Engineering" },
+  { major_name: "Gestion" },
+  { major_name: "Informatique" },
+  { major_name: "Ingénierie Civil" },
 ];
 //courses
 export const coursesData = [
-  { course_name: "Accounting", major_id: 1 },
-  { course_name: "Business Ethics", major_id: 1 },
-  { course_name: "Organizational Behavior", major_id: 1 },
-  { course_name: "Strategic Management", major_id: 1 },
-  { course_name: "Operations Management", major_id: 1 },
+  { course_name: " Comptabilité", major_id: 1 },
+  { course_name: "Éthique des affaires", major_id: 1 },
+  { course_name: "Comportement Organisationnel", major_id: 1 },
+  { course_name: "Gestion Stratégique", major_id: 1 },
+  { course_name: "Gestion des Opérations", major_id: 1 },
 
-  { course_name: "Algorithms", major_id: 2 },
-  { course_name: "Data Structures", major_id: 2 },
-  { course_name: "Computer Networks", major_id: 2 },
-  { course_name: "Operating Systems", major_id: 2 },
+  { course_name: "Algorithmes", major_id: 2 },
+  { course_name: "Structures de données", major_id: 2 },
+  { course_name: "Réseaux informatiques", major_id: 2 },
+  { course_name: "Systèmes d'exploitation", major_id: 2 },
 
-  { course_name: "Structural Analysis", major_id: 3 },
-  { course_name: "Fluid Mechanics", major_id: 3 },
-  { course_name: "Transportation Engineering", major_id: 3 },
-  { course_name: "Environmental Engineering", major_id: 3 },
+  { course_name: "Analyse structurelle", major_id: 3 },
+  { course_name: "Mécanique fluide", major_id: 3 },
+  { course_name: "Ingénierie de la conduite", major_id: 3 },
+  { course_name: "Ingénierie environnementale", major_id: 3 },
 
-  { course_name: "French"},
-  { course_name: "Spanish"},
-  { course_name: "Chinese"},
+  { course_name: "Français"},
+  { course_name: "Espagnole"},
+  { course_name: "Mandarin"},
 ];
 
 //groups
 export const groupsData = [
-  { group_name: "Mgmt 1st Year A" },
-  { group_name: "Mgmt 1st Year B" },
-  { group_name: "CS 1st Year" },
-  { group_name: "CS 2nd Year" },
-  { group_name: "Civil Eng 1st Year" },
-  { group_name: "Civil Eng 2nd Year" },
+  { group_name: "Gestion L1 A" },
+  { group_name: "Gestion L1 B" },
+  { group_name: "Informatique L1" },
+  { group_name: "Informatique L2" },
+  { group_name: "Ingénierie Civil L1" },
+  { group_name: "Ingénierie Civil L2" },
 ];
 //teachers
 export const teachersData = [
   {
     teacher_name: "John Doe",
-    teacher_title: "Professor",
+    teacher_title: "Docteur en Sciences de l'Éducation",
     teacher_profil_pic: "john_doe.png",
   },
   {
-    teacher_name: "Jane Smith",
-    teacher_title: "Associate Professor",
+    teacher_name: "RAFANOMEZANA Celestin",
+    teacher_title: "Professeur en Genie Mecanique",
     teacher_profil_pic: "jane_smith.png",
   },
   {
-    teacher_name: "Emily Johnson",
-    teacher_title: "Assistant Professor",
+    teacher_name: "FEHIZORO Fanaperana",
+    teacher_title: "Docteur en Comptabilité",
     teacher_profil_pic: "emily_johnson.png",
   },
   {
-    teacher_name: "Michael Brown",
-    teacher_title: "Lecturer",
+    teacher_name: "ANDRIANINA Mahefa",
+    teacher_title: "Docteur en Science Cognitive",
     teacher_profil_pic: "michael_brown.png",
   },
   {
-    teacher_name: "Jessica Davis",
-    teacher_title: "Senior Lecturer",
+    teacher_name: "Jessica Mickael",
+    teacher_title: "Docteur en Genie civil",
     teacher_profil_pic: "jessica_davis.png",
   },
   {
-    teacher_name: "Daniel Miller",
-    teacher_title: "Adjunct Professor",
+    teacher_name: "RAVAOARISOA Finaritra",
+    teacher_title: "Master en Culture et Linguistique",
     teacher_profil_pic: "daniel_miller.png",
   },
 ];
