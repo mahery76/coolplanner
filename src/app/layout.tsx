@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { CiSettings, CiBoxList, CiCalendar } from "react-icons/ci";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,17 +16,38 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        
-        <div className="header">
-          <div>Coolplanner</div>
-          <div className="navigation">
-            <Link href="/timetable">timetable</Link>
-            <Link href="/activities">Activities</Link>
-            <Link href="/timetable_elements">timetable_elements</Link>
+      <body className=" p-5">
+        {/* header */}
+        <div className="flex justify-between">
+          <div className="flex">
+            <div className="text-2xl">Emplois du temps</div>
+          </div>
+
+          <div className="flex gap-8 justify-center items-center ">
+            <Link href="/timetable">
+              {/* <div>Timetable</div> */}
+              <div className="text-2xl font-bold">
+                <CiCalendar />
+              </div>
+            </Link>
+
+            <Link href="/activities">
+              <div className="text-2xl">
+                <CiBoxList />
+              </div>
+              {/* <div>Activities</div> */}
+            </Link>
+
+            <Link href="/timetable_elements">
+              <div className="text-2xl">
+                <CiSettings />
+              </div>
+              {/* <div>Timetable elements</div> */}
+            </Link>
           </div>
         </div>
 
+        {/* main */}
         <main>{children}</main>
       </body>
     </html>

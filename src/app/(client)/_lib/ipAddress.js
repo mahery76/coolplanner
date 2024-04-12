@@ -1,0 +1,1 @@
+export const apiUrl = "http://192.168.1.162:3000/api"
