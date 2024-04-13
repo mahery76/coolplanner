@@ -51,7 +51,7 @@ model teachers {
   teacher_id           Int                      @id @default(autoincrement())
   teacher_name         String
   teacher_title        String
-  teacher_profil_pic   String
+  teacher_profil_pic   String?
   teacher_availability teacher_availabilities[]
   activities           activities[]
 }
