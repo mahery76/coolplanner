@@ -1,5 +1,4 @@
 import { NextResponse, NextRequest } from 'next/server'
-import { PrismaClient } from "@prisma/client";
 import {pool} from '../../../../../config/db'
 
 export async function GET(req: Request, {params}: {params: {id: string}}) {
