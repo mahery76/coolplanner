@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/api/user_roles/route.ts", "src/app/(client)/timetable_elements/teachers/page.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/api/user_roles/route.ts", "src/app/(client)/timetable_elements/teachers/page.js", "config/db.ts"],
   "exclude": ["node_modules"]
 }
