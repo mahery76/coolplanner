@@ -8,7 +8,7 @@ export async function GET(req: Request) {
       const majors = await pool.query(`SELECT * FROM majors;`)
   
       return NextResponse.json({"majors": majors.rows})
-    } catch (err) {
+    } catch (err) {5
       return NextResponse.json({"error": err})
     }
     finally{

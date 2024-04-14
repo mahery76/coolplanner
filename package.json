@@ -7,10 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "vercel-build": "prisma generate && prisma migrate deploy && next build"
   },
   "dependencies": {
     "@prisma/client": "^5.11.0",
+    "@vercel/postgres": "^0.8.0",
     "axios": "^1.6.8",
     "dexie": "^4.0.4",
     "dexie-react-hooks": "^1.1.7",
